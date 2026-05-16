@@ -53,6 +53,9 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<JwtService>();
 
+builder.Services.AddHttpClient<MovieService>();
+builder.Services.AddScoped<MovieService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
