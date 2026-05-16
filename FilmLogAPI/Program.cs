@@ -37,6 +37,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
   };
 });
 
+builder.Services.AddAuthorization();
+
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("AllowIonic",
+      policy =>
+      {
+        policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+      });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -44,6 +57,8 @@ if (app.Environment.IsDevelopment())
   app.UseSwagger();
   app.UseSwaggerUI();
 }
+
+app.UseCors("AllowIonic");
 
 app.UseHttpsRedirection();
 
