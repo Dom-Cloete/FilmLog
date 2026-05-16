@@ -1,22 +1,23 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using FilmLogAPI.Data;
 using FilmLogAPI.Models;
+using FilmLogAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
@@ -50,6 +51,8 @@ builder.Services.AddCors(options =>
       });
 });
 
+builder.Services.AddScoped<JwtService>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -59,8 +62,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowIonic");
-
-app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
