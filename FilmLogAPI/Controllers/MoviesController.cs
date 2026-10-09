@@ -1,5 +1,7 @@
+using FilmLogAPI.DTOs;
 using FilmLogAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace FilmLogAPI.Controllers
 {

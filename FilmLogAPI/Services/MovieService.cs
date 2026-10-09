@@ -23,10 +23,9 @@ namespace FilmLogAPI.Services
       return await response.Content.ReadAsStringAsync();
     }
 
-    public async Task<String> GetMovieDetails(string title)
+    public async Task<string> GetMovieDetails(string title)
     {
       string apiKey = _configuration["OMDb:ApiKey"]!;
-
       string url = $"https://www.omdbapi.com/?apikey={apiKey}&t={title}";
 
       var response = await _httpClient.GetAsync(url);

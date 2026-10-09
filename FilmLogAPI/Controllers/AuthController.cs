@@ -27,28 +27,25 @@ namespace FilmLogAPI.Controllers
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto dto)
     {
-      var existingUser = await _context.Users
-          .FirstOrDefaultAsync(u => u.Email == dto.Email);
+      var email = dto.Email.Trim().ToLower();
 
-      if (existingUser != null)
-      {
-        return BadRequest("User already exists");
-      }
+      var exists = await _context.Users
+          .AnyAsync(u => u.Email.ToLower() == email);
 
-      var hashedPassword =
-          BCrypt.Net.BCrypt.HashPassword(dto.Password);
+      if (exists)
+        return BadRequest(new { message = "User already exists" });
 
       var user = new User
       {
-        Email = dto.Email,
-        PasswordHash = hashedPassword
+        Email = email,
+        PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+        CreatedAt = DateTime.UtcNow
       };
 
       _context.Users.Add(user);
-
       await _context.SaveChangesAsync();
 
-      return Ok("Registration successful");
+      return Ok(new { message = "Registration successful" });
     }
 
     [HttpPost("login")]
