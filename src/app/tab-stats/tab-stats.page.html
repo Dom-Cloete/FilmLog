@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Statistics Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Top Genres</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <canvas id="genreChart"></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Average Watch Time per Genre</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <canvas id="watchChart"></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Top Watched Movies</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid class="stats-table">
+
+        <ion-row class="header-row">
+          <ion-col><strong>Title</strong></ion-col>
+          <ion-col><strong>Genre</strong></ion-col>
+          <ion-col><strong>Watched</strong></ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let m of getTopMovies()" class="data-row">
+          <ion-col>{{ m.title }}</ion-col>
+          <ion-col>{{ m.genre }}</ion-col>
+          <ion-col>
+            <ion-badge color="success">
+              {{ m.timesWatched || 1 }}
+            </ion-badge>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

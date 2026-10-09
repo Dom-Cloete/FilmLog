@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search Movies</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item class="input-item">
+    <ion-input [(ngModel)]="query" placeholder="Search movies"></ion-input>
+  </ion-item>
+
+  <ion-button class="full-width-button" (click)="search()">Search</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let movie of movies" (click)="goToMovieDetails(movie)" button>
+      <ion-thumbnail slot="start">
+        <img [src]="movie.Poster !== 'N/A' ? movie.Poster : 'assets/icon.png'">
+      </ion-thumbnail>
+
+      <div class="movie-content">
+        <ion-label class="movie-title">{{ movie.Title }}</ion-label>
+        <p class="movie-year">{{ movie.Year }}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

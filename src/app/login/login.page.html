@@ -1,0 +1,28 @@
+<ion-content>
+
+  <div class="login-container">
+    <div class="login-header">
+      <img src="/assets/icon.png" alt="FilmLog Icon" class="app-icon" />
+      <h1>FilmLog</h1>
+    </div>
+
+    <ion-item>
+    <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]="email" type="email" placeholder="e.g. user@email.com"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password" placeholder="Enter your password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="login()">
+      Login
+    </ion-button>
+
+    <ion-button expand="full" routerLink="/register">
+      Create Account
+    </ion-button>
+  </div>
+
+</ion-content>

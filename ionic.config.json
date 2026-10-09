@@ -1,0 +1,7 @@
+{
+  "name": "Assignment2_FilmLog",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

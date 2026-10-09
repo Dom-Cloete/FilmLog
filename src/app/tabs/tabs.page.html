@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="toolbar-center">
+      <img src="/assets/icon.png" alt="FilmLog Icon" class="app-icon" />
+      <ion-title class="login-title">FilmLog</ion-title>
+    </div>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        Logout
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      <ion-label>Search</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="watchlist">
+      <ion-icon name="bookmark"></ion-icon>
+      <ion-label>Watchlist</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="watched">
+      <ion-icon name="film"></ion-icon>
+      <ion-label>Watched</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="stats">
+      <ion-icon name="stats-chart"></ion-icon>
+      <ion-label>Stats</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+
+</ion-tabs>

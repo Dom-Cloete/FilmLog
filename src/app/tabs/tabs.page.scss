@@ -1,0 +1,16 @@
+.toolbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding-left: 20px;
+}
+
+.login-title {
+  text-align: center;
+  color: var(--ion-color-primary);
+  font-weight: 700;
+  font-size: 28px;
+  margin: 0;
+}
+

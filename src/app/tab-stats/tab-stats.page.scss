@@ -1,0 +1,35 @@
+ion-card {
+  margin-bottom: 16px;
+  border-radius: 12px;
+}
+
+canvas {
+  width: 100% !important;
+  max-height: 300px;
+}
+
+.stats-table {
+  width: 100%;
+}
+
+.header-row {
+  font-weight: bold;
+  background: #f8faf9;
+  color: #054A29;
+  border-bottom: 2px solid #7EB09B;
+  padding: 8px 0;
+}
+
+.data-row {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 6px 0;
+}
+
+.data-row ion-col {
+  font-size: 14px;
+}
+
+ion-badge {
+  font-weight: 600;
+  border-radius: 8px;
+}
