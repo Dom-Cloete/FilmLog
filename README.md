@@ -23,7 +23,7 @@ Each user only sees their own watchlist and watched list.
 | API | ASP.NET Core Web API (.NET 8), JWT bearer auth, Swagger |
 | Data | Entity Framework Core with SQL Server LocalDB |
 | External | OMDb API |
-| Tests | xUnit |
+| Tests | xUnit, Moq, EF Core InMemory |
 
 ## API endpoints
 
@@ -51,7 +51,18 @@ Each user only sees their own watchlist and watched list.
 
 ### 1. Start the API
 1. Open `FilmLogAPI/FilmLogAPI.sln` in Visual Studio.
-2. In `FilmLogAPI/FilmLogAPI/appsettings.json`, set `OMDb:ApiKey` to your key. Optionally, change `Jwt:Key` to your own long random string.
+2. Set the two secret values. They're kept out of the repo with [user-secrets](https://learn.microsoft.com/aspnet/core/security/app-secrets). In Visual Studio, right-click the **FilmLogAPI** project, choose **Manage User Secrets**, and paste:
+   ```json
+   {
+     "Jwt:Key": "any-long-random-string-of-at-least-32-characters",
+     "OMDb:ApiKey": "your-omdb-key"
+   }
+   ```
+   Or run this from `FilmLogAPI/FilmLogAPI`:
+   ```bash
+   dotnet user-secrets set "Jwt:Key" "any-long-random-string-of-at-least-32-characters"
+   dotnet user-secrets set "OMDb:ApiKey" "your-omdb-key"
+   ```
 3. Create the database by running this in the **Package Manager Console**:
    ```
    Update-Database
@@ -66,6 +77,13 @@ npm install
 ionic serve
 ```
 The app talks to the API URL set in `src/environments/environment.ts`.
+
+### Running the tests
+Open **Test Explorer** in Visual Studio and run all tests, or run this from `FilmLogAPI/`:
+```bash
+dotnet test
+```
+The tests cover registration (password hashing, duplicate emails), login (valid and invalid credentials, case-insensitive emails) and movie search.
 
 ## Project structure
 

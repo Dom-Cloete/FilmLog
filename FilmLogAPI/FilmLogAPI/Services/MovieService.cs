@@ -13,7 +13,7 @@ namespace FilmLogAPI.Services
       _configuration = configuration;
     }
 
-    public async Task<String> SearchMovie(string title)
+    public virtual async Task<string> SearchMovie(string title)
     {
       string apiKey = _configuration["OMDb:ApiKey"]!;
 
@@ -23,7 +23,7 @@ namespace FilmLogAPI.Services
       return await response.Content.ReadAsStringAsync();
     }
 
-    public async Task<string> GetMovieDetails(string title)
+    public virtual async Task<string> GetMovieDetails(string title)
     {
       string apiKey = _configuration["OMDb:ApiKey"]!;
       string url = $"https://www.omdbapi.com/?apikey={apiKey}&t={title}";

@@ -51,8 +51,10 @@ namespace FilmLogAPI.Controllers
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto dto)
     {
+      var email = dto.Email.Trim().ToLower();
+
       var user = await _context.Users
-          .FirstOrDefaultAsync(u => u.Email == dto.Email);
+          .FirstOrDefaultAsync(u => u.Email == email);
 
       if (user == null)
       {
