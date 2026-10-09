@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Watched</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let movie of watched" (click)="goToMovieDetails(movie)" button>
+      <ion-thumbnail slot="start">
+        <img [src]="movie['#IMG_POSTER']">
+      </ion-thumbnail>
+
+      <div class="movie-content">
+        <ion-label class="movie-title">{{ movie['#TITLE'] }}</ion-label>
+        <p class="movie-year">Watched: {{ movie.timesWatched }}</p>
+        <div class="movie-buttons">
+          <ion-button color="danger" (click)="remove(movie); $event.stopPropagation()" class="movie-button">
+            Remove
+          </ion-button>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

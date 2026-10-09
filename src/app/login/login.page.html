@@ -1,0 +1,28 @@
+<ion-content>
+
+  <div class="login-container">
+    <div class="login-header">
+      <img src="/assets/icon.png" alt="FilmLog Icon" class="app-icon" />
+      <h1>FilmLog</h1>
+    </div>
+
+    <ion-item class="input-item">
+      <ion-label position="stacked">Username</ion-label>
+      <ion-input [(ngModel)]="username" placeholder="e.g. john_doe"></ion-input>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password" placeholder="e.g. MyPassword123"></ion-input>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="error">
+      <p>{{ error }}</p>
+    </ion-text>
+
+    <ion-button class="full-width-button" (click)="login()">
+      Login / Signup
+    </ion-button>
+  </div>
+
+</ion-content>

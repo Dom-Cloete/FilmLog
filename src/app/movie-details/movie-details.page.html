@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/search"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Movie Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="movie" class="ion-padding">
+  <div class="movie-details-container">
+
+    <div class="movie-poster">
+      <img [src]="movie['#IMG_POSTER']" alt="{{ movie['#TITLE'] }}" *ngIf="movie['#IMG_POSTER']">
+    </div>
+
+    <div class="detailed-info-container">
+
+      <h1 class="movie-title">{{ movie['#TITLE'] }}</h1>
+
+      <p class="movie-year" *ngIf="movie['#YEAR']">
+        Release Year: <strong>{{ movie['#YEAR'] }}</strong>
+      </p>
+
+      <div class="movie-cast" *ngIf="movie['#ACTORS'] || movie['actors']">
+        <h3>Cast:</h3>
+        <p>{{ movie['#ACTORS'] || movie['actors'] }}</p>
+      </div>
+
+      <hr class="divider">
+
+      <p class="movie-watched" *ngIf="movie.timesWatched">
+        Watched: <strong>{{ movie.timesWatched }}</strong> time(s)
+      </p>
+
+    </div>
+
+    <div class="action-buttons">
+      <ion-button 
+        (click)="addToWatchlist()" 
+        [disabled]="isInWatchlist || isInWatched"
+        class="action-button">
+        {{ isInWatchlist ? 'In Watchlist' : 'Add to Watchlist' }}
+      </ion-button>
+
+      <ion-button 
+        (click)="markAsWatched()" 
+        color="success"
+        class="action-button">
+        {{ isInWatched ? 'Watch Again' : 'Mark as Watched' }}
+      </ion-button>
+
+      <ion-button 
+      *ngIf="isInWatched"
+      (click)="resetWatchCount()" 
+      color="warning"
+      class="action-button">
+      Reset & Move to Watchlist
+    </ion-button>
+   </div>
+  </div>
+</ion-content>
