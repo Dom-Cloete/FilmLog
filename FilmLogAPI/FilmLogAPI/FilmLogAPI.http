@@ -1,0 +1,6 @@
+@FilmLogAPI_HostAddress = http://localhost:5108
+
+GET {{FilmLogAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
